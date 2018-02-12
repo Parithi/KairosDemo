@@ -22,7 +22,7 @@
 <body>
 	<div class="container">
 		<header class="codrops-header">
-			<h1>Kairos API Demo<span>CompuSystems Inc</span></h1>
+			<h1>Kairos API Demo<span>Verify an Image against a Subject</span></h1>
 			<nav class="codrops-demos">
 				<a class="current-demo" href="index.php">Verify</a>
 				<a href="recognize.php">Recognize</a>
@@ -32,6 +32,10 @@
 		<div style="width:980px;margin:0 auto;text-align: center;">
 		<div class="data">
 					<input type="text" style="height:50px;border:0px;box-shadow:1px 1px 1px #afafaf;padding:16px;" placeholder="Enter subject_id" name="subject_id" id="subject_id"/>
+					<br/>
+					<div style="height:10px">
+						<label id="subject_ids" style="font-size:11px;display:none;"></label>
+					</div>
 		</div>
 		</div>
 		<div class="content">
@@ -70,7 +74,10 @@
 			</div>
 		</div>
 
-
+		<div class="footer">
+			Demoed to CompuSystems Inc<br/>
+			Developed by ElamParithi Arul - Zydesoft
+		</span>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </body>
@@ -82,6 +89,8 @@
 	ctx = inputCanvas.getContext("2d");
 	var isWebCamClicked = false;
 	var imageValid = false;
+
+	loadSubjectIds();
 
 	$("#webcam-btn").click(function(){
 		showWebcam();
@@ -245,6 +254,28 @@
 		} else {
 			alert("Enter subject_id");
 		}
+	}
+
+	function loadSubjectIds(){
+		$.post('kairos.php', {method : "load"}, 
+			function(returnedData){
+				var resultData = JSON.parse(returnedData);
+				console.log(resultData);
+				var subjectIdText = "Eg. ";
+				for(subjectId in resultData['subject_ids']){
+					subjectIdText += resultData['subject_ids'][subjectId] + ",";
+				}
+				$("#subject_ids").html(removeLastComma(subjectIdText));
+				setTimeout(() => {
+					$("#subject_ids").fadeIn();
+				}, 200);
+			}).fail(function(){
+				console.log("unable to load subject ids");
+			});
+	}
+
+	function removeLastComma(str) {
+		return str.replace(/,(\s+)?$/, '');   
 	}
 		
 </script>

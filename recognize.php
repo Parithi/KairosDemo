@@ -22,7 +22,7 @@
 <body>
 	<div class="container">
 		<header class="codrops-header">
-			<h1>Kairos API Demo<span>CompuSystems Inc</span></h1>
+		<h1>Kairos API Demo<span>Recognize Subjects in an Image</span></h1>
 			<nav class="codrops-demos">
 				<a href="index.php">Verify</a>
 				<a class="current-demo" href="recognize.php">Recognize</a>

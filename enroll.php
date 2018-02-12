@@ -22,7 +22,7 @@
 <body>
 	<div class="container">
 		<header class="codrops-header">
-			<h1>Kairos API Demo<span>CompuSystems Inc</span></h1>
+		<h1>Kairos API Demo<span>Enroll Subject to Kairos DB</span></h1>
 			<nav class="codrops-demos">
 				<a href="index.php">Verify</a>
 				<a href="recognize.php">Recognize</a>
@@ -31,7 +31,11 @@
 		</header>
 		<div style="width:980px;margin:0 auto;text-align: center;">
 		<div class="data">
-					<input type="text" style="height:50px;border:0px;box-shadow:1px 1px 1px #afafaf;padding:16px;" placeholder="Enter subject_id" name="subject_id" id="subject_id"/>
+				<input type="text" style="height:50px;border:0px;box-shadow:1px 1px 1px #afafaf;padding:16px;" placeholder="Enter subject_id" name="subject_id" id="subject_id"/>
+				<br/>
+				<div style="height:10px">
+					<label id="subject_ids" style="font-size:11px;display:none;"></label>
+				</div>
 		</div>
 		</div>
 		<div class="content">
@@ -82,6 +86,8 @@
 	ctx = inputCanvas.getContext("2d");
 	var isWebCamClicked = false;
 	var imageValid = false;
+
+	loadSubjectIds();
 
 	$("#webcam-btn").click(function(){
 		showWebcam();
@@ -227,6 +233,7 @@
 					if(resultData && resultData.images && resultData.images.length > 0){
 						if(resultData.images[0].transaction.status == "success" && resultData.images[0].transaction.confidence > 0.65 && resultData.images[0].transaction.subject_id == $("#subject_id").val()){
 							$("#result-message").html('Enrolled \"'+$("#subject_id").val()+'\" Succesfully!');
+							loadSubjectIds();
 						} else {
 							$("#result-message").html('Enrolling failed. Please check parameters.');
 						}
@@ -245,7 +252,28 @@
 		} else {
 			alert("Enter subject_id");
 		}
-		
+	}
+
+	function loadSubjectIds(){
+		$.post('kairos.php', {method : "load"}, 
+			function(returnedData){
+				var resultData = JSON.parse(returnedData);
+				console.log(resultData);
+				var subjectIdText = "Eg. ";
+				for(subjectId in resultData['subject_ids']){
+					subjectIdText += resultData['subject_ids'][subjectId] + ",";
+				}
+				$("#subject_ids").html(removeLastComma(subjectIdText));
+				setTimeout(() => {
+					$("#subject_ids").fadeIn();
+				}, 200);
+			}).fail(function(){
+				console.log("unable to load subject ids");
+			});
+	}
+
+	function removeLastComma(str) {
+		return str.replace(/,(\s+)?$/, '');   
 	}
 		
 </script>
