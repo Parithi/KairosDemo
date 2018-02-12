@@ -217,7 +217,7 @@
 			canvas.getContext("2d").drawImage(video, 0, 0, 400, 300);
 			$("#c").fadeIn();
 			$("#v").fadeOut();
-			$("#webcam-submit-btn").html("Authenticate");
+			$("#webcam-submit-btn").html("Verify");
 			isWebCamClicked = true;
 		}
 	}
