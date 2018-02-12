@@ -219,9 +219,9 @@
 				$("#result-message").fadeIn();
 				console.log(resultData.images);
 				if(resultData && resultData.images && resultData.images.length > 0){
-					if(resultData.images[0].transaction.status == "success" && resultData.images[0].transaction.confidence > 0.65){
+					if(resultData.images[0].transaction.status == "success"){
 						var message = "";
-						message += 'Sure to be : ' + resultData.images[0].transaction.subject_id + "(" + resultData.images[0].transaction.confidence + ")";
+						message += 'Found : ' + resultData.images[0].transaction.subject_id + "(" + resultData.images[0].transaction.confidence + ")";
 						if(resultData.images[0].candidates.length > 1){
 							message += "<br/><br/>Found using candidates: <br/>";
 							for(var i=1;i<resultData.images[0].candidates.length;i++){
