@@ -234,7 +234,7 @@
 						$("#result-message").fadeIn();
 						console.log(resultData);
 						if(resultData && resultData.images && resultData.images.length > 0){
-							if(resultData.images[0].transaction.status == "success" && resultData.images[0].transaction.confidence > 0.95 && resultData.images[0].transaction.subject_id == $("#subject_id").val()){
+							if(resultData.images[0].transaction.status == "success" && resultData.images[0].transaction.confidence > 0.9 && resultData.images[0].transaction.subject_id == $("#subject_id").val()){
 								$("#result-message").html('Yes, it\'s '+$("#subject_id").val()+'! Confidence : ' + resultData.images[0].transaction.confidence);
 							} else {
 								$("#result-message").html('Unable to find '+$("#subject_id").val());
