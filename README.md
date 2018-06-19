@@ -1,8 +1,8 @@
-A Small Demo on Kairos
+A Small Demo on ##
 
-A demo using Kairos API for testing face recognition.
+A demo using ## API for testing face recognition.
 
-[Demo](https://zydesoft.ml/KairosDemo)
+[Demo](https://zydesoft.ml/##)
 
 
 

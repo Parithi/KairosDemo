@@ -27,7 +27,7 @@ $subject_id = $_REQUEST['subject_id'];
 
  function checkImage($imageData,$subject_id){
     global $APP_ID, $APP_KEY;
-    $queryUrl = "https://api.kairos.com/verify";
+    $queryUrl = "API_URL/verify";
     $imageObject = '{"image": "'.$imageData.'",
         "subject_id": "'.$subject_id.'",
         "gallery_name":"expressReg"}';
@@ -49,7 +49,7 @@ $subject_id = $_REQUEST['subject_id'];
 
  function recognizeImage($imageData){
     global $APP_ID, $APP_KEY;
-    $queryUrl = "https://api.kairos.com/recognize";
+    $queryUrl = "API_URL/recognize";
     $imageObject = '{"image": "'.$imageData.'",
         "gallery_name":"expressReg"}';
     $request = curl_init($queryUrl);
@@ -70,7 +70,7 @@ $subject_id = $_REQUEST['subject_id'];
 
  function enroll($imageData,$subject_id){
     global $APP_ID, $APP_KEY;
-    $queryUrl = "https://api.kairos.com/enroll";
+    $queryUrl = "API_URL/enroll";
     $imageObject = '{"image": "'.$imageData.'",
         "subject_id": "'.$subject_id.'",
         "gallery_name":"expressReg"}';
@@ -92,7 +92,7 @@ $subject_id = $_REQUEST['subject_id'];
 
  function loadSubjectIds(){
     global $APP_ID, $APP_KEY;
-    $queryUrl = "https://api.kairos.com/gallery/view";
+    $queryUrl = "API_URL/gallery/view";
     $imageObject = '{"gallery_name":"expressReg"}';
     $request = curl_init($queryUrl);
     curl_setopt($request, CURLOPT_POST, true);

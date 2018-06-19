@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>CompuSystems - Kairos API Demo</title>
+	<title>CompuSystems - API Demo</title>
 	<meta name="description" content="Demo 1 for the tutorial: Creating Google Material Design Ripple Effects with SVG" />
 	<meta name="keywords" content="svg, ripple effect, google material design, radial action, GreenSock, css, tutorial" />
 	<meta name="author" content="Dennis Gaebel for Codrops" />
@@ -22,7 +22,7 @@
 <body>
 	<div class="container">
 		<header class="codrops-header">
-			<h1>CompuSystems - Kairos API Demo<span>Verify an Image against a Subject</span></h1>
+			<h1>CompuSystems - API Demo<span>Verify an Image against a Subject</span></h1>
 			<nav class="codrops-demos">
 				<a class="current-demo" href="index.php">Verify</a>
 				<a href="recognize.php">Recognize</a>
@@ -226,7 +226,7 @@
 		if($("#subject_id").val() != ''){
 			$("#sources-div").fadeOut();
 			$("#results-div").fadeIn();
-				$.post('kairos.php', { imageData: data, method : "verify", subject_id : $("#subject_id").val()}, 
+				$.post('api.php', { imageData: data, method : "verify", subject_id : $("#subject_id").val()}, 
 				function(returnedData){
 					var resultData = JSON.parse(returnedData);
 					$("#verifying").fadeOut();
@@ -257,7 +257,7 @@
 	}
 
 	function loadSubjectIds(){
-		$.post('kairos.php', {method : "load"}, 
+		$.post('api.php', {method : "load"}, 
 			function(returnedData){
 				var resultData = JSON.parse(returnedData);
 				console.log(resultData);
