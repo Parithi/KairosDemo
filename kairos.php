@@ -1,7 +1,7 @@
 <?php
 
-$APP_ID = "83bb2d03";
-$APP_KEY = "8b2dfc41c2f5f033eecbd040aeff48e4";
+$APP_ID = "";
+$APP_KEY = "";
 
 $imageData = $_REQUEST['imageData'];
 $method = $_REQUEST['method'];
@@ -27,12 +27,13 @@ $subject_id = $_REQUEST['subject_id'];
 
  function checkImage($imageData,$subject_id){
     global $APP_ID, $APP_KEY;
-    $queryUrl = "http://api.kairos.com/verify";
+    $queryUrl = "https://api.kairos.com/verify";
     $imageObject = '{"image": "'.$imageData.'",
         "subject_id": "'.$subject_id.'",
-        "gallery_name":"zydesoft"}';
+        "gallery_name":"expressReg"}';
     $request = curl_init($queryUrl);
     curl_setopt($request, CURLOPT_POST, true);
+    curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($request,CURLOPT_POSTFIELDS, $imageObject);
     curl_setopt($request, CURLOPT_HTTPHEADER, array(
             "Content-type: application/json",
@@ -48,11 +49,12 @@ $subject_id = $_REQUEST['subject_id'];
 
  function recognizeImage($imageData){
     global $APP_ID, $APP_KEY;
-    $queryUrl = "http://api.kairos.com/recognize";
+    $queryUrl = "https://api.kairos.com/recognize";
     $imageObject = '{"image": "'.$imageData.'",
-        "gallery_name":"zydesoft"}';
+        "gallery_name":"expressReg"}';
     $request = curl_init($queryUrl);
     curl_setopt($request, CURLOPT_POST, true);
+    curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($request,CURLOPT_POSTFIELDS, $imageObject);
     curl_setopt($request, CURLOPT_HTTPHEADER, array(
             "Content-type: application/json",
@@ -68,12 +70,13 @@ $subject_id = $_REQUEST['subject_id'];
 
  function enroll($imageData,$subject_id){
     global $APP_ID, $APP_KEY;
-    $queryUrl = "http://api.kairos.com/enroll";
+    $queryUrl = "https://api.kairos.com/enroll";
     $imageObject = '{"image": "'.$imageData.'",
         "subject_id": "'.$subject_id.'",
-        "gallery_name":"zydesoft"}';
+        "gallery_name":"expressReg"}';
     $request = curl_init($queryUrl);
     curl_setopt($request, CURLOPT_POST, true);
+    curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($request,CURLOPT_POSTFIELDS, $imageObject);
     curl_setopt($request, CURLOPT_HTTPHEADER, array(
             "Content-type: application/json",
@@ -89,10 +92,11 @@ $subject_id = $_REQUEST['subject_id'];
 
  function loadSubjectIds(){
     global $APP_ID, $APP_KEY;
-    $queryUrl = "http://api.kairos.com/gallery/view";
-    $imageObject = '{"gallery_name":"zydesoft"}';
+    $queryUrl = "https://api.kairos.com/gallery/view";
+    $imageObject = '{"gallery_name":"expressReg"}';
     $request = curl_init($queryUrl);
     curl_setopt($request, CURLOPT_POST, true);
+    curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($request,CURLOPT_POSTFIELDS, $imageObject);
     curl_setopt($request, CURLOPT_HTTPHEADER, array(
             "Content-type: application/json",
